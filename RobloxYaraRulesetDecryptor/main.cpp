@@ -22,7 +22,7 @@ uint64_t CoolShit(uint64_t value, int index, int n = 1) {
 std::string DecryptRuleset(int index) {
     uint64_t RobloxBase = Memory::RobloxBase;
 
-    uint64_t v5 = _rotl64(0xCAD9621FLL, 31) ^ 0xECC5B9D6; // RobloxPlayerBeta.exe+0x46EA9D0
+    uint64_t v5 = _rotl64(0xCAD9621FLL, 31) ^ 0xECC5B9D6;
     uint64_t v14 = ((uint32_t)v5 ^ 0x64DA6611) + 0x5984AF49;
     v14 &= 0xFFFFFFFF;
 
