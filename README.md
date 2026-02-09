@@ -1,7 +1,7 @@
-# External-Yara-Ruleset-Decryptor
+# External Yara Ruleset Decryptor 🎨
 - this dumps all yara rulesets external because sigma
 
-# Important
+# Important ✨
 - this is updated for version "version-80c7b8e578f241ff"
 
 # Disclaimer
