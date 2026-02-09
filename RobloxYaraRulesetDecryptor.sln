@@ -1,0 +1,25 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+VisualStudioVersion = 17.14.36811.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RobloxYaraRulesetDecryptor", "RobloxYaraRulesetDecryptor\RobloxYaraRulesetDecryptor.vcxproj", "{83E2BB69-6705-4EAB-BFAB-F7F1C3ED5065}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83E2BB69-6705-4EAB-BFAB-F7F1C3ED5065}.Debug|x64.ActiveCfg = Debug|x64
+		{83E2BB69-6705-4EAB-BFAB-F7F1C3ED5065}.Debug|x64.Build.0 = Debug|x64
+		{83E2BB69-6705-4EAB-BFAB-F7F1C3ED5065}.Release|x64.ActiveCfg = Release|x64
+		{83E2BB69-6705-4EAB-BFAB-F7F1C3ED5065}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66A859B4-27AE-46A6-A1D2-A86B47832695}
+	EndGlobalSection
+EndGlobal
