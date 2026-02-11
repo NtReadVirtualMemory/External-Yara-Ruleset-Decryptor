@@ -2,14 +2,14 @@
 #include <iostream>
 #include "Memory.hpp"
 
-// IMPORTANT: This is Updated for version "version-80c7b8e578f241ff" 
+// IMPORTANT: This is Updated for version "version-bd08027bb04e4045" 
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
     uint64_t Encryptions2[] = { 0x1546A, 0xB8DC758, 0x27FE };
 
-    uint64_t v12 = 0x5859090;
-    uint64_t si = 0x5E36C90;
+    uint64_t v12 = 0x592FA00;
+    uint64_t si = 0x5F122D0;
 }
 
 uint64_t CoolShit(uint64_t value, int index, int n = 1) {
