@@ -2,14 +2,26 @@
 #include <iostream>
 #include "Memory.hpp"
 
-// IMPORTANT: This is Updated for version "version-bd08027bb04e4045" 
+// IMPORTANT: This is Updated for version "version-689e359b09ad43b0" 
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
     uint64_t Encryptions2[] = { 0x1546A, 0xB8DC758, 0x27FE };
 
-    uint64_t v12 = 0x592FA00;
-    uint64_t si = 0x5F122D0;
+    //.text : 0000000004C5264F           lea     rax, unk_5DF7A80             <- v12
+    //.text : 0000000004C52656           mov[rsp + 170h + var_130], rax
+    //.text : 0000000004C5265B           mov[rsp + 170h + var_128], rax
+    //.text : 0000000004C52660           mov     rax, 1000001E3h              <- v17
+    //.text : 0000000004C5266A           mov[rsp + 170h + var_108], rax
+	//.text : 0000000004C5266F           mov[rsp + 170h + var_100], 1AAAFh    <- Encryptions1[0]
+	//.text : 0000000004C52678           mov[rsp + 170h + var_F8], 1AE2Bh     <- Encryptions1[1]
+	//.text : 0000000004C52681           mov[rbp + 70h + var_F0], 545DFh      <- Encryptions1[2]
+	//.text : 0000000004C52689           mov[rbp + 70h + var_E8], 1546Ah      <- Encryptions2[0]
+	//.text : 0000000004C52691           mov[rbp + 70h + var_E0], 0B8DC758h   <- Encryptions2[1]
+	//.text : 0000000004C52699           mov[rbp + 70h + var_D8], 27FEh       <- Encryptions2[2]
+
+    uint64_t v12 = 0x5DF7A80;
+    uint64_t si = 0x6421ED0;
 }
 
 uint64_t CoolShit(uint64_t value, int index, int n = 1) {
@@ -82,8 +94,8 @@ int main() {
     while (Memory::ProcessId == 0) {
         Memory::ProcessId = Memory::GetPID(L"RobloxPlayerBeta.exe");
         Sleep(100);
-	}
-	if (!Memory::AttachToProcess(Memory::ProcessId)){
+    }
+    if (!Memory::AttachToProcess(Memory::ProcessId)) {
         std::cout << "failed to attach to RobloxPlayerBeta.exe!" << std::endl;
         system("pause");
         return 1;
@@ -92,11 +104,11 @@ int main() {
 
     std::cout << "Roblox PID -> " << std::dec << Memory::ProcessId << std::endl;
     std::cout << "Roblox Base -> 0x" << std::hex << Memory::RobloxBase << std::endl;
- 
+
     for (int i = 0; i < 67; i++) {
         std::string ruleset = DecryptRuleset(i);
         if (!ruleset.empty()) {
-			std::cout << "Ruleset " << std::dec << i << " -> " << ruleset << std::endl;
+            std::cout << "Ruleset " << std::dec << i << " -> " << ruleset << std::endl;
         }
     }
     // save them to a file?
