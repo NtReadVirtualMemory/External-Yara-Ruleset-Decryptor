@@ -20,8 +20,8 @@ namespace offsets {
 	//.text : 0000000004C52691           mov[rbp + 70h + var_E0], 0B8DC758h   <- Encryptions2[1]
 	//.text : 0000000004C52699           mov[rbp + 70h + var_D8], 27FEh       <- Encryptions2[2]
 
-    uint64_t v12 = 0x5DF7A80;
-    uint64_t si = 0x6421ED0;
+    uint64_t v12 = 0x5E46570;
+    uint64_t si = 0x646F900;
 }
 
 uint64_t CoolShit(uint64_t value, int index, int n = 1) {
