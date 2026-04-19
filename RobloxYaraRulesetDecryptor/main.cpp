@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Memory.hpp"
 
-// IMPORTANT: This is Updated for version "version-689e359b09ad43b0" 
+// IMPORTANT: This is Updated for version "version-9d412f44a6fe4081" 
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
