@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Memory.hpp"
 
-// IMPORTANT: This is Updated for version "version-9d412f44a6fe4081" 
+// IMPORTANT: This is Updated for version "latest ok" 
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
@@ -20,8 +20,8 @@ namespace offsets {
 	//.text : 0000000004C52691           mov[rbp + 70h + var_E0], 0B8DC758h   <- Encryptions2[1]
 	//.text : 0000000004C52699           mov[rbp + 70h + var_D8], 27FEh       <- Encryptions2[2]
 
-    uint64_t v12 = 0x5E46570;
-    uint64_t si = 0x646F900;
+    uint64_t v12 = 0x5F2DB00;
+    uint64_t si = 0x655C020;
 }
 
 uint64_t CoolShit(uint64_t value, int index, int n = 1) {
