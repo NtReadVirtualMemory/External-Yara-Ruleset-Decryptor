@@ -7,6 +7,8 @@
 
 // IMPORTANT: This is Updated for version "version-76173e47a79145c7"
 // 4C 8B 25 ? ? ? ? 4C 89 65
+// 4C 8B 25 ? ? ? ? 4C 89 ? ? 66 0F 6F 05
+// 4C 8B 25 ? ? ? ? 4C 89 ? ? ? 66 0F 6F 05
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
