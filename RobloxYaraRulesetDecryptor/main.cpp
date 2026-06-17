@@ -11,8 +11,8 @@ namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
     uint64_t Encryptions2[] = { 0x1546A, 0xB8DC758, 0x27FE };
-    uint64_t v12 = 0x7698B90;
-    uint64_t si = 0x6AC70F0;
+    uint64_t v12 = 0x7825530;
+    uint64_t si = 0x6C141F0;
 }
 // Thanks to Roblox for these changes but you'll NEVER be able to stop me. <3
 
