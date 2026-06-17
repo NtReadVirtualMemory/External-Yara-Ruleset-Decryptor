@@ -5,14 +5,14 @@
 #include <iomanip>
 #include "Memory.hpp"
 
-// IMPORTANT: This is Updated for version "version-460909c4fe904aae"
+// IMPORTANT: This is Updated for version "version-76173e47a79145c7"
 // 4C 8B 25 ? ? ? ? 4C 89 65
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
     uint64_t Encryptions2[] = { 0x1546A, 0xB8DC758, 0x27FE };
-    uint64_t v12 = 0x7532388;
-    uint64_t si = 0x6978FF0;
+    uint64_t v12 = 0x7698B90;
+    uint64_t si = 0x6AC70F0;
 }
 // Thanks to Roblox for these changes but you'll NEVER be able to stop me. <3
 
