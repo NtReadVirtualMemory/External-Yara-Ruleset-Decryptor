@@ -5,18 +5,35 @@
 #include <iomanip>
 #include "Memory.hpp"
 
-// IMPORTANT: This is Updated for version "version-76173e47a79145c7"
-// 4C 8B 25 ? ? ? ? 4C 89 65
-// 4C 8B 25 ? ? ? ? 4C 89 ? ? 66 0F 6F 05
-// 4C 8B 25 ? ? ? ? 4C 89 ? ? ? 66 0F 6F 05
+// IMPORTANT: This is Updated for version "version-ce0bcd0fbd484804"
+// 48 89 5C 24 ?? 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 ?? 48 81 EC 50 01 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 ?? 49 8B F8 4C 89 45
 namespace offsets {
     uint64_t v17 = 0x1000001E3;
     uint64_t Encryptions1[] = { 0x1AAAF, 0x1AE2B, 0x545DF };
     uint64_t Encryptions2[] = { 0x1546A, 0xB8DC758, 0x27FE };
-    uint64_t v12 = 0x7825530;
-    uint64_t si = 0x6C141F0;
+    uint64_t v12 = 0x64A5790;
+    uint64_t si = 0x6F990A0;
 }
 // Thanks to Roblox for these changes but you'll NEVER be able to stop me. <3
+
+bool IsValidRulesetName(const std::string& value) {
+    if (value.size() < 3 || value.size() > 128) {
+        return false;
+    }
+
+    for (unsigned char c : value) {
+        const bool valid =
+            (c >= 'a' && c <= 'z') ||
+            (c >= '0' && c <= '9') ||
+            c == '_';
+
+        if (!valid) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 uint64_t CoolShit(uint64_t value, int index, int n = 1) {
     uint64_t result = value;
@@ -27,64 +44,104 @@ uint64_t CoolShit(uint64_t value, int index, int n = 1) {
 }
 
 std::string DecryptRuleset(int index) {
-    uint64_t RobloxBase = Memory::RobloxBase;
+    if (index < 0) {
+        return {};
+    }
 
-    uint64_t v12_ptr = Memory::read<uint64_t>(RobloxBase + offsets::v12);
+    constexpr uint32_t seed = 0x61A48F10u;
+    constexpr uint32_t payloadSeed3 = 0x091864E3u;
 
-    uint32_t v79 = (uint32_t)(_rotl64(0x41692277ULL, 0x37) ^ 0x6CE50D47);
-    uint64_t v14 = (v79 ^ 0x64DA6611) + 0x5984AF49;
-    v14 &= 0xFFFFFFFF;
+    const uint64_t base = Memory::RobloxBase;
+    const uint64_t table = base + offsets::v12;
 
-    uint64_t sibase = Memory::read<uint64_t>(RobloxBase + offsets::si);
-    uint64_t sibase2 = Memory::read<uint64_t>(RobloxBase + offsets::si + 8);
+    const uint64_t si1 = Memory::read<uint64_t>(base + offsets::si);
+    const uint64_t si2 = Memory::read<uint64_t>(base + offsets::si + 8);
 
-    uint64_t s1 = CoolShit(v14, 0, 2);
-    uint64_t s2 = CoolShit(sibase, 1, 2);
-    uint64_t s3 = CoolShit(sibase2, 2, 2);
+    uint64_t s1 = CoolShit(seed, 0, 2);
+    uint64_t s2 = CoolShit(si1, 1, 2);
+    uint64_t s3 = CoolShit(si2, 2, 2);
 
-    uint32_t head = Memory::read<uint32_t>(v12_ptr + 4);
-    uint32_t v7 = (head ^ (uint32_t)s1 ^ (uint32_t)s2 ^ (uint32_t)s3) + (12 * index);
+    const uint32_t head = Memory::read<uint32_t>(table + 4);
 
-    s1 = CoolShit(v7, 0, 2);
+    const uint32_t recordOffset =
+        (head ^
+            static_cast<uint32_t>(s1) ^
+            static_cast<uint32_t>(s2) ^
+            static_cast<uint32_t>(s3))
+        + 12 * static_cast<uint32_t>(index);
+
+    s1 = CoolShit(recordOffset, 0, 2);
     s2 = CoolShit(s2, 1, 3);
     s3 = CoolShit(s3, 2, 3);
 
-    uint32_t v8 = Memory::read<uint32_t>(v12_ptr + v7) ^ (uint32_t)s1 ^ (uint32_t)s2 ^ (uint32_t)s3;
+    const uint32_t payloadOffset =
+        Memory::read<uint32_t>(table + recordOffset) ^
+        static_cast<uint32_t>(s1) ^
+        static_cast<uint32_t>(s2) ^
+        static_cast<uint32_t>(s3);
 
-    s1 = CoolShit(v14, 0, 1);
-    s2 = CoolShit(v8, 1, 1);
-    s3 = 0x7785BD7CLL;
+    s1 = CoolShit(seed, 0, 1);
+    s2 = CoolShit(payloadOffset, 1, 1);
+    s3 = CoolShit(payloadSeed3, 2, 1);
 
-    uint64_t Data = v12_ptr + v8;
-    uint32_t Entry = Memory::read<uint32_t>(Data) ^ (uint32_t)s1 ^ (uint32_t)s2 ^ (uint32_t)s3;
-    Data += 4;
+    uint64_t data = table + payloadOffset;
 
-    uint16_t lenght = (uint16_t)Entry;
-    if (lenght <= 2 || lenght > 0x500) {
-        return "";
+    const uint32_t entry =
+        Memory::read<uint32_t>(data) ^
+        static_cast<uint32_t>(s1) ^
+        static_cast<uint32_t>(s2) ^
+        static_cast<uint32_t>(s3);
+
+    data += 4;
+
+    const uint16_t length =
+        static_cast<uint16_t>(entry);
+
+    if (length == 0 || length > 0x500) {
+        return {};
     }
 
-    std::string DecryptedRuleset = "";
-    DecryptedRuleset += (char)((Entry >> 16) & 0xFF);
-    DecryptedRuleset += (char)((Entry >> 24) & 0xFF);
+    std::string result;
+    result.reserve(length);
 
-    uint32_t SigmaKey = 0;
-    for (int i = 0; i < (lenght - 2); i++) {
-        if (i % 4 == 0) {
+    if (length >= 1) {
+        result.push_back(
+            static_cast<char>((entry >> 16) & 0xFFu)
+        );
+    }
+
+    if (length >= 2) {
+        result.push_back(
+            static_cast<char>((entry >> 24) & 0xFFu)
+        );
+    }
+
+    uint32_t decryptedWord = 0;
+
+    for (uint32_t position = 0;
+        position < static_cast<uint32_t>(length - 2);
+        ++position) {
+
+        if ((position & 3u) == 0) {
             s1 = CoolShit(s1, 0, 1);
             s2 = CoolShit(s2, 1, 1);
             s3 = CoolShit(s3, 2, 1);
-            uint32_t data_val = Memory::read<uint32_t>(Data);
-            SigmaKey = data_val ^ (uint32_t)s1 ^ (uint32_t)s2 ^ (uint32_t)s3;
-            Data += 4;
+
+            decryptedWord =
+                Memory::read<uint32_t>(data) ^
+                static_cast<uint32_t>(s1) ^
+                static_cast<uint32_t>(s2) ^
+                static_cast<uint32_t>(s3);
+
+            data += 4;
         }
-        char charac = (char)((SigmaKey >> ((i % 4) * 8)) & 0xFF);
-        if (charac) {
-            DecryptedRuleset += charac;
-        }
+
+        result.push_back(static_cast<char>(
+            (decryptedWord >> ((position & 3u) * 8u)) & 0xFFu
+        ));
     }
 
-    return DecryptedRuleset;
+    return result;
 }
 
 // yes i didn't write this
@@ -156,21 +213,24 @@ int main() {
 
     for (int i = 0; i < 167; i++) {
         std::string ruleset = DecryptRuleset(i);
-        if (!ruleset.empty()) {
-            std::cout << "Ruleset " << std::dec << i << " -> " << ruleset << std::endl;
-            outFile << "Ruleset " << std::dec << i << " -> " << ruleset << '\n';
-            if (!firstJsonEntry) {
-                jsonoutFile << ",\n";
-            }
 
-            jsonoutFile << "    {\n";
-            jsonoutFile << "      \"index\": " << std::dec << i << ",\n";
-            jsonoutFile << "      \"value\": \"" << JsonEscape(ruleset) << "\"\n";
-            jsonoutFile << "    }";
-
-            firstJsonEntry = false;
-            Successful++;
+        if (ruleset.empty() || !IsValidRulesetName(ruleset)) {
+            continue;
         }
+
+        std::cout << "Ruleset " << std::dec << i << " -> " << ruleset << std::endl;
+        outFile << "Ruleset " << std::dec << i << " -> " << ruleset << '\n';
+        if (!firstJsonEntry) {
+            jsonoutFile << ",\n";
+        }
+
+        jsonoutFile << "    {\n";
+        jsonoutFile << "      \"index\": " << std::dec << i << ",\n";
+        jsonoutFile << "      \"value\": \"" << JsonEscape(ruleset) << "\"\n";
+        jsonoutFile << "    }";
+
+        firstJsonEntry = false;
+        Successful++;
     }
 
     jsonoutFile << "\n";
