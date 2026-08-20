@@ -1,0 +1,264 @@
+{
+  "rulesets": [
+    {
+      "index": 0,
+      "value": "found_static_imgui"
+    },
+    {
+      "index": 1,
+      "value": "mod_attr_cert_subject"
+    },
+    {
+      "index": 2,
+      "value": "packer_themida_binary"
+    },
+    {
+      "index": 3,
+      "value": "found_lib_freesolid_font"
+    },
+    {
+      "index": 4,
+      "value": "mod_is_ms_pe"
+    },
+    {
+      "index": 5,
+      "value": "lua_versions"
+    },
+    {
+      "index": 6,
+      "value": "suspicious_urls_exploits"
+    },
+    {
+      "index": 7,
+      "value": "mod_is_pe"
+    },
+    {
+      "index": 8,
+      "value": "mod_is_not_pe"
+    },
+    {
+      "index": 9,
+      "value": "exploit_electron"
+    },
+    {
+      "index": 10,
+      "value": "mod_has_optional_header_magic64"
+    },
+    {
+      "index": 11,
+      "value": "found_suspicious_libs"
+    },
+    {
+      "index": 12,
+      "value": "suspicious_pipe_name"
+    },
+    {
+      "index": 13,
+      "value": "mod_attr_cert_issuer"
+    },
+    {
+      "index": 14,
+      "value": "packer_vmprotect_binary"
+    },
+    {
+      "index": 15,
+      "value": "roblox_urls"
+    },
+    {
+      "index": 16,
+      "value": "eval_legitimate"
+    },
+    {
+      "index": 17,
+      "value": "found_lib_synapse_sdk"
+    },
+    {
+      "index": 18,
+      "value": "found_roblox"
+    },
+    {
+      "index": 19,
+      "value": "mod_timestamp_in_future"
+    },
+    {
+      "index": 20,
+      "value": "whitelist_hyperion"
+    },
+    {
+      "index": 21,
+      "value": "eval_exploit"
+    },
+    {
+      "index": 22,
+      "value": "exploit_awp"
+    },
+    {
+      "index": 23,
+      "value": "found_lib_lua"
+    },
+    {
+      "index": 24,
+      "value": "exploit_celestial"
+    },
+    {
+      "index": 25,
+      "value": "found_lua"
+    },
+    {
+      "index": 26,
+      "value": "eval_suspicious"
+    },
+    {
+      "index": 27,
+      "value": "exploit_wave"
+    },
+    {
+      "index": 28,
+      "value": "exploit_krampus"
+    },
+    {
+      "index": 29,
+      "value": "lua_functions"
+    },
+    {
+      "index": 30,
+      "value": "lua_decompler"
+    },
+    {
+      "index": 31,
+      "value": "suspicious_urls_repo"
+    },
+    {
+      "index": 32,
+      "value": "mod_attr_hidden"
+    },
+    {
+      "index": 33,
+      "value": "exploit_sirhurt"
+    },
+    {
+      "index": 34,
+      "value": "found_lib_kiero"
+    },
+    {
+      "index": 35,
+      "value": "mod_timestamp_olderthan_two_weeks"
+    },
+    {
+      "index": 36,
+      "value": "exploit_synapse"
+    },
+    {
+      "index": 37,
+      "value": "eval_possible_exploit"
+    },
+    {
+      "index": 38,
+      "value": "roblox_keywords"
+    },
+    {
+      "index": 39,
+      "value": "mod_is_heuristic_pe"
+    },
+    {
+      "index": 40,
+      "value": "packer_vmprotect"
+    },
+    {
+      "index": 41,
+      "value": "lua_jit"
+    },
+    {
+      "index": 42,
+      "value": "found_lib_curl"
+    },
+    {
+      "index": 43,
+      "value": "suspicious_roblox_keywords"
+    },
+    {
+      "index": 44,
+      "value": "suspicious_generic_exploit_strings"
+    },
+    {
+      "index": 45,
+      "value": "suspicious_urls_social"
+    },
+    {
+      "index": 46,
+      "value": "eval_neutral"
+    },
+    {
+      "index": 47,
+      "value": "suspicious_apis_vm"
+    },
+    {
+      "index": 48,
+      "value": "mod_has_common_section_names"
+    },
+    {
+      "index": 49,
+      "value": "exploit_celery"
+    },
+    {
+      "index": 50,
+      "value": "mod_has_optional_header_magic32"
+    },
+    {
+      "index": 51,
+      "value": "exploit_vandal"
+    },
+    {
+      "index": 52,
+      "value": "packer_themida"
+    },
+    {
+      "index": 53,
+      "value": "mod_attr_unsafepath"
+    },
+    {
+      "index": 54,
+      "value": "found_lib_medal"
+    },
+    {
+      "index": 55,
+      "value": "found_packer"
+    },
+    {
+      "index": 56,
+      "value": "mod_attr_exploits_name"
+    },
+    {
+      "index": 57,
+      "value": "found_lib_imgui"
+    },
+    {
+      "index": 58,
+      "value": "mod_timestamp_within_two_weeks"
+    },
+    {
+      "index": 59,
+      "value": "suspicious_hexmask"
+    },
+    {
+      "index": 60,
+      "value": "lua_keywords"
+    },
+    {
+      "index": 61,
+      "value": "suspicious_exploits_name"
+    },
+    {
+      "index": 62,
+      "value": "mod_has_dosstub_msg"
+    },
+    {
+      "index": 63,
+      "value": "mod_is_normal_pe"
+    },
+    {
+      "index": 64,
+      "value": "mod_attr_suspicious_path"
+    }
+  ]
+}
